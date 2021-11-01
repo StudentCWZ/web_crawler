@@ -29,7 +29,7 @@ class ConfBase(object):
         """
         Takes the configure of data by connecting mysql database.
 
-        :return: sql_cnf, table_name, create_table_sql, insert_table_sql
+        :return: sql_dict, table_name, create_table_sql, insert_table_sql
         """
         # 获取 sql_cnf
         sql_cnf = self.cf.get("mysql", {})
