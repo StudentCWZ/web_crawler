@@ -1,0 +1,13 @@
+mysql:
+  host: localhost
+  port: 3306
+  user: xxxx
+  passwd: xxxx
+  db: xxxx
+  table_name: xxxx
+  create_table_sql: CREATE TABLE {} (`fund_abbreviation` varchar(255) DEFAULT NULL, `fund_id` varchar(50) DEFAULT NULL, `fund_net_worth_date` varchar(50) DEFAULT NULL, `fund_net_worth` varchar(50) DEFAULT NULL, `fund_cumulative_net_worth` varchar(50) DEFAULT NULL, `fund_quote_change` varchar(50) DEFAULT NULL, `fund_establishment_date` varchar(50) DEFAULT NULL, `fund_subscription_status` varchar(50) DEFAULT NULL, `fund_redemption_status` varchar(50) DEFAULT NULL, `fund_fixed_investment_status` varchar(50) DEFAULT NULL) CHARSET=utf8mb4;
+  insert_table_sql: INSERT INTO {} (fund_abbreviation, fund_id, fund_net_worth_date, fund_net_worth, fund_cumulative_net_worth, fund_quote_change, fund_establishment_date, fund_subscription_status, fund_redemption_status, fund_fixed_investment_status) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+
+url:
+  initial_url: http://fund.chinaamc.com/portal/cn/include/newproducthome.jsp
+
