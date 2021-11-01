@@ -158,7 +158,7 @@ class CrawlerBase(object):
             # 获取网页信息
             html_dict = self.get_page(url=url, proxies_list=proxies_list)
             # 条件判断
-            if not html_dict.get("data").get("data"):
+            if not html_dict:
                 # 跳过本次循环
                 continue
             # 解析网页信息
