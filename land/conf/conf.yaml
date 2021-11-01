@@ -1,0 +1,10 @@
+mysql:
+  host: localhost
+  port: 3306
+  user: xxxx
+  passwd: xxxx
+  db: xxxx
+  table_name: xxxx
+  create_table_sql: CREATE TABLE {} (`id` int auto_increment primary key, `location` varchar(255) DEFAULT NULL, `transfer_form` varchar(255) DEFAULT NULL, `launch_time` varchar(255) DEFAULT NULL, `land_area` varchar(255) DEFAULT NULL, `planning_area` varchar(255) DEFAULT NULL, `address` varchar(255) DEFAULT NULL, `state` varchar(50) DEFAULT NULL, `area_code` varchar(255) DEFAULT NULL, `planned_use` varchar(255) DEFAULT NULL) CHARSET=utf8mb4;
+  insert_table_sql: INSERT INTO {} (location, transfer_form, launch_time, land_area, planning_area, address, state, area_code, planned_use) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+
