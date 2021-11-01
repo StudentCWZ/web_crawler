@@ -1,0 +1,19 @@
+mysql:
+  host: localhost
+  port: 3306
+  user: xxxx
+  passwd: xxxx
+  db: xxxx
+  table_name: xxxx
+  create_table_sql: CREATE TABLE {} (`id` int auto_increment primary key, `type` varchar(255) DEFAULT NULL, `jobid` varchar(50) DEFAULT NULL, `coid` varchar(50) DEFAULT NULL, `job_href` varchar(255) DEFAULT NULL, `job_name` varchar(255) DEFAULT NULL, `company_href` varchar(255) DEFAULT NULL, `company_name` varchar(255) DEFAULT NULL, `providesalary_text` varchar(50) DEFAULT NULL, `workarea_text` varchar(50) DEFAULT NULL, `companytype_text` varchar(50) DEFAULT NULL, `issuedate` varchar(50) DEFAULT NULL, `jobwelf` varchar(255) DEFAULT NULL, `attribute_text` varchar(255) DEFAULT NULL, `companysize_text` varchar(50) DEFAULT NULL, `companyind_text` varchar(255) DEFAULT NULL) CHARSET=utf8
+  insert_table_sql: INSERT INTO {} (type, jobid, coid, job_href, job_name, company_href, company_name, providesalary_text, workarea_text, companytype_text, issuedate, jobwelf, attribute_text, companysize_text, companyind_text) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+
+url:
+  city_url: https://js.51jobcdn.com/in/js/2016/layer/area_array_c.js?20210318
+
+city:
+  cities: 北京, 上海, 广州, 深圳, 杭州, 成都, 重庆
+
+key:
+  key_list: Python, Java, Go, PHP, Ruby
+
