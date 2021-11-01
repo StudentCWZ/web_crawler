@@ -143,7 +143,7 @@ class CrawlerBase(object):
     def main(self):
         """The method is entrance of program."""
         # 输出 log 信息
-        print("################################# Running fund.py ##################################")
+        print("################################# Running main.py ##################################")
         # 输出 log 信息
         logging.info("Requesting page and Parsing html ....")
         # 获取网页信息
@@ -193,7 +193,7 @@ class CrawlerBase(object):
         # 输出 log 信息
         logging.info("The process of operating database is successful!")
         # 输出 log 信息
-        print("################################# Exiting fund.py ##################################")
+        print("################################# Exiting main.py ##################################")
 
 
 if __name__ == '__main__':
