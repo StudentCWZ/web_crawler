@@ -1,0 +1,12 @@
+mysql:
+  host: localhost
+  port: 3306
+  user: xxxx
+  passwd: xxxx
+  db: xxxx
+  table_name: xxxx
+  create_table_sql: CREATE TABLE {} (`id` int auto_increment primary key, `city` varchar(50) DEFAULT NULL, `date` varchar(50) DEFAULT NULL, `weather` varchar(50) DEFAULT NULL, `day_night` varchar(50) DEFAULT NULL, `temp_min` varchar(50) DEFAULT NULL, `temp_max` varchar(50) DEFAULT NULL) CHARSET=utf8
+  insert_table_sql: INSERT INTO  {} (city, date, weather, day_night, temp_min, temp_max) VALUES (%s, %s, %s, %s, %s, %s)
+
+url:
+  initial_url: https://www.amap.com/service/cityList
