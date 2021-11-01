@@ -1,0 +1,9 @@
+mysql:
+  host: localhost
+  port: 3306
+  user: xxxx
+  passwd: xxxx
+  db: xxxx
+  table_name: xxxx
+  create_table_sql: CREATE TABLE {} (`id` int auto_increment primary key, `estate_name` varchar(50) DEFAULT NULL, `estate_size` varchar(50) DEFAULT NULL, `estate_tag` varchar(255) DEFAULT NULL, `estate_character` varchar(255) DEFAULT NULL, `estate_address` varchar(255) DEFAULT NULL, `estate_status` varchar(255) DEFAULT NULL, `estate_price` varchar(50) DEFAULT NULL) CHARSET=utf8;
+  insert_table_sql: INSERT INTO  {} (estate_name, estate_size, estate_tag, estate_character, estate_address, estate_status, estate_price) VALUES (%s, %s, %s, %s, %s, %s, %s)
