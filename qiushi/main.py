@@ -57,14 +57,14 @@ class CrawlerBase(object):
         except Exception as e:
             # 输出 log 信息
             logging.error(f"Method get_page: the error of getting response: {e}")
-            # 程序异常：退出程序
-            sys.exit(1)
+            # 返回 html
+            return ""
         # 判断状态码
         if response.status_code != 200:
             # 输出 debug 信息
             print("Method get_page: the error of getting efficient html ...")
-            # 程序异常：退出程序
-            sys.exit(1)
+            # 返回 html
+            return ""
         else:
             # 获取网页源码
             html = response.text
@@ -196,6 +196,10 @@ class CrawlerBase(object):
             print("requesting url: %s" % url)
             # 获取网页源码
             html = self.get_page(url)
+            # 条件判断
+            if not html:
+                # 跳入下个循环
+                continue
             # 休眠 1~3s
             time.sleep(random.randint(1, 3))
             # 遍历
