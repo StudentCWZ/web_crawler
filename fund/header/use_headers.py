@@ -8,6 +8,7 @@
 # 基本库
 import json
 import os
+import sys
 
 
 class HeadersBase(object):
@@ -37,6 +38,10 @@ class HeadersBase(object):
             # 返回 header_list
             return header_list
         else:
-            # 输出 log 信息
-            print("Method get_headers: The error of getting headers message!")
+            # 输出 debug 信息
+            print("Method get_headers: the error of getting header_list from fake_useragent.json ...")
+            # 输出 debug 信息
+            print("Method get_headers: exiting the program ...")
+            # 退出程序
+            sys.exit(1)
 
