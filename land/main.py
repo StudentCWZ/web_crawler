@@ -6,7 +6,6 @@
 
 
 # 基本库
-import sys
 import logging
 import random
 import time
