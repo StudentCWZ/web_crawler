@@ -51,7 +51,7 @@ class ConfBase(object):
             return mysql_conf
         else:
             # 输出 log 信息
-            print("Method mysql_conn_conf: The error of getting configure file!")
+            print("Method mysql_conn_conf: the error of getting configure file!")
             # 退出程序
             sys.exit(1)
 
@@ -75,7 +75,7 @@ class ConfBase(object):
             return table_name, create_table_sql, insert_table_sql
         else:
             # 输出 log 信息
-            print("Method mysql_use_conf: The error of getting configure file!")
+            print("Method mysql_use_conf: the error of getting configure file!")
             # 退出程序
             sys.exit(1)
 
