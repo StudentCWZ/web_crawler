@@ -67,7 +67,7 @@ class CrawlerBase(object):
                 return html
         except Exception as e:
             # 输出 log 信息
-            logging.error(f"Method get_page: The error of getting response: {e}")
+            logging.error(f"Method get_page: the error of getting response: {e}")
 
     def max_page(self, city_tuple: tuple) -> tuple:
         """
@@ -92,7 +92,7 @@ class CrawlerBase(object):
             max_page_list = re.findall(r"<a href=\"javascript:SetCondition.*?p(.*?)'", max_page_content, re.S)
         except Exception as e:
             # 输出 log 信息
-            logging.error(f"The error of getting max_page_list: {e}")
+            logging.error(f"Method max_page: the error of getting max_page_list: {e}")
         else:
             # 条件判断
             if max_page_list:
@@ -198,7 +198,7 @@ class CrawlerBase(object):
                 }
         except Exception as e:
             # 输出 log 信息
-            logging.error(f"Method parse_page: The error of getting estate_character: {e}")
+            logging.error(f"Method parse_page: the error of getting estate_character: {e}")
 
     def main(self):
         """The method is entrance of program."""
