@@ -46,7 +46,7 @@ class CrawlerBase(object):
         """
          Takes the html by requesting the web page.
 
-        :param url: 网页源码
+        :param url: 网页链接
         :param proxies_list: 代理 ip 列表
         :return: html_dict: 字典
         """
@@ -82,7 +82,7 @@ class CrawlerBase(object):
                 return html_dict
         except Exception as e:
             # 输出 log 信息
-            logging.error(f"Method get_page: The error of getting response: {e}")
+            logging.error(f"Method get_page: the error of getting response: {e}")
 
     @staticmethod
     def parse_page(city_name: str, html_dict: dict) -> Generator:
@@ -119,7 +119,7 @@ class CrawlerBase(object):
                     }
         except Exception as e:
             # 输出 log 信息
-            logging.error(f"Method parse_page: The error of parsing page: {e}")
+            logging.error(f"Method parse_page: the error of parsing page: {e}")
 
     def main(self):
         """The method is entrance of program."""
