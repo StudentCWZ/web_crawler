@@ -38,8 +38,12 @@ class HeadersBase(object):
         """
         # 条件判断
         if not self.file_exists():
-            # 退出函数
-            return []
+            # 输出 debug 信息
+            print("Method get_headers: the file of fake_useragent.json is not exist ...")
+            # 输出 debug 信息
+            print("Method get_headers: exiting the program ...")
+            # 退出程序
+            sys.exit(1)
         # 打开文件
         with open(self.file_path, "r", encoding="utf-8") as f:
             # 获取 header_list
