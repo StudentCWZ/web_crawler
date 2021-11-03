@@ -38,5 +38,5 @@ class HeadersBase(object):
             return header_list
         else:
             # 输出 log 信息
-            print("Method get_headers: The error of getting headers message!")
+            print("Method get_headers: the error of getting headers message!")
 
