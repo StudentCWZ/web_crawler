@@ -1,0 +1,12 @@
+mysql:
+  host: localhost
+  port: 3306
+  user: xxxx
+  passwd: xxxx
+  db: xxxx
+  table_name: xxxx
+  create_table_sql: CREATE TABLE {} (`artist_classification` varchar(50) DEFAULT NULL, `singer_name` varchar(50) DEFAULT NULL, `song_name` longtext DEFAULT NULL, `album_name` varchar(50) DEFAULT NULL, `singer_url` varchar(255) DEFAULT NULL, `song_url` varchar(255) DEFAULT NULL, `song_out_url` varchar(255) DEFAULT NULL, `album_url` varchar(255) DEFAULT NULL) CHARSET=utf8mb4;
+  insert_table_sql: INSERT INTO {} (artist_classification, singer_name, song_name, album_name, singer_url, song_url, song_out_url, album_url) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+
+url:
+  initial_url: https://music.163.com/discover/artist
