@@ -65,7 +65,7 @@ class MysqlBase(object):
                 cursor.execute(sql)
             except Exception as e:
                 # 输出 log 信息
-                logging.error(f"Method table_exists: The error of executing sql: {e}")
+                logging.error(f"Method table_exists: the error of executing sql: {e}")
             # 获取 tables
             tables = [cursor.fetchall()]
             # 捕获异常
