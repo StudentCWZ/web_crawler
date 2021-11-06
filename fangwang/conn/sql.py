@@ -29,7 +29,7 @@ class MysqlBase(object):
         """
         Connect mysql database.
 
-        :return: conn: dbutils.steady_db.SteadyDBConnection
+        :return: conn: 一个 conn 对象
         """
         # 捕获异常
         try:
