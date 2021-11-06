@@ -156,4 +156,3 @@ class MysqlBase(object):
         finally:
             # 关闭连接
             conn.close()
-
