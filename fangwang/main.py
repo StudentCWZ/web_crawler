@@ -7,6 +7,7 @@
 
 # 基本库
 import logging
+import os
 import random
 import re
 import time
@@ -31,7 +32,7 @@ class CrawlerBase(object):
         # logging 模块初始化
         logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s: %(message)s")
         # 城市列表
-        self.city_tuple_list = [('广州', 'gz'), ('佛山', 'fs'), ('东莞', 'dg'), ('江西', 'jx'), ('安徽', 'ah'), ('天津', 'tj')]
+        self.city_tuple_list = rc.ConfBase().city_conf()
         # 声明 self.url_list
         self.url_list = list()
         # 声明 self.result_list
@@ -40,14 +41,28 @@ class CrawlerBase(object):
         self.mysql_dict = rc.ConfBase().mysql_conn_conf()
         # 声明 table_name, create_table_sql, insert_table_sql
         self.table_name, self.create_table_sql, self.insert_table_sql = rc.ConfBase().mysql_use_conf()
+        # 声明 file_name
+        self.file_name = os.path.split(__file__)[-1]
+
+    def __enter__(self):
+        # 输出 log 信息
+        print("############################### Running {} ################################".format(self.file_name))
+        # 返回 self
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        # 输出 log 信息
+        print("############################### Exiting {} ################################".format(self.file_name))
+        # 返回 False
+        return False
 
     @staticmethod
     def get_page(url: str) -> str:
-        """:Summary: 利用 requests 发起网络请求，获取网页源码
-           :Args:
-                url: 网址
-           :Returns
-                html: 网页源码
+        """
+        Takes html from web page.
+
+        :param url: 网址
+        :return: html
         """
         # 构造请求头
         headers = {
@@ -253,8 +268,8 @@ class CrawlerBase(object):
 
 
 if __name__ == '__main__':
-    # 实例化 CrawlerBase 对象
-    cb = CrawlerBase()
-    # 调用 main 函数
-    cb.main()
+    # 上下文管理器
+    with CrawlerBase() as cb:
+        # 调用 main 方法
+        cb.main()
 
