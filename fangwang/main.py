@@ -62,7 +62,7 @@ class CrawlerBase(object):
         Takes html from web page.
 
         :param url: 网址
-        :return: html
+        :return html: 网页源码
         """
         # 构造请求头
         headers = {
@@ -89,7 +89,7 @@ class CrawlerBase(object):
         Takes the max numbers of pages.
 
         :param city_tuple: 城市列表
-        :return: max_page, url
+        :return max_page, url
         """
         # 请求参数
         param = urllib.request.quote(city_tuple[0])
@@ -125,7 +125,7 @@ class CrawlerBase(object):
         Parses the html from web pages.
 
         :param html: 网页源码
-        :return: Generator
+        :return Generator: 生成器
         """
         # 捕获异常
         try:
