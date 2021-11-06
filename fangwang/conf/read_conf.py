@@ -79,11 +79,11 @@ class ConfBase(object):
             # 退出程序
             sys.exit(1)
 
-    def city_conf(self):
+    def city_conf(self) -> list:
         """
         Takes the configure of data by about city information.
 
-        :return:
+        :return: city_tuple_list: 城市信息列表
         """
         # 获取 city_map
         city_map = self.cf.get("city_map", {})
