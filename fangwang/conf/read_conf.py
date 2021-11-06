@@ -27,7 +27,7 @@ class ConfBase(object):
 
     def mysql_conn_conf(self) -> dict:
         """
-        Takes the configure of data by connecting mysql database.
+        Takes the configure of data about connecting mysql database.
 
         :return: mysql_conf
         """
@@ -57,7 +57,7 @@ class ConfBase(object):
 
     def mysql_use_conf(self) -> tuple:
         """
-        Takes the configure of data by using mysql database.
+        Takes the configure of data about using mysql database.
 
         :return: table_name, create_table_sql, insert_table_sql
         """
@@ -79,3 +79,30 @@ class ConfBase(object):
             # 退出程序
             sys.exit(1)
 
+    def city_conf(self):
+        """
+        Takes the configure of data by about city information.
+
+        :return:
+        """
+        # 获取 city_map
+        city_map = self.cf.get("city_map", {})
+        # 条件判断
+        if not city_map:
+            # 输出 log 信息
+            print("Method city_conf: the city_map is an empty object ...")
+            # 退出程序
+            sys.exit(1)
+        else:
+            # 获取 city_dict
+            city_dict = city_map.get("city_dict", "")
+            # 条件判断
+            if not city_dict:
+                # 输出 log 信息
+                print("Method city_conf: the city_dict is an empty object ...")
+                # 退出程序
+                sys.exit(1)
+            # 获取 city_tuple_list
+            city_tuple_list = [(k, v) for k, v in city_dict.items()]
+            # 返回 city_tuple_list
+            return city_tuple_list
