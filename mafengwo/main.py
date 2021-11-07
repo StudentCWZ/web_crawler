@@ -596,8 +596,8 @@ class CrawlerBase(object):
 
 
 if __name__ == "__main__":
-    # 实例化 CrawlerBase 对象
-    cb = CrawlerBase()
-    # 调用 main 函数
-    cb.main()
+    # 上下文管理器
+    with CrawlerBase() as cb:
+        # 调用 main 方法
+        cb.main()
 
