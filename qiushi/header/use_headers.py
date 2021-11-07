@@ -25,7 +25,7 @@ class HeadersBase(object):
         """
         Judge the existence of file.
 
-        :return: True/False
+        :return True/False
         """
         # 返回 True/False
         return os.path.exists(self.file_path)
@@ -34,7 +34,7 @@ class HeadersBase(object):
         """
         Takes list of headers.
 
-        :return: header_list：请求头列表
+        :return header_list：请求头列表
         """
         # 条件判断
         if not self.file_exists():
@@ -60,4 +60,3 @@ class HeadersBase(object):
             sys.exit(1)
         # 返回 header_list
         return header_list
-
