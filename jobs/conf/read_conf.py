@@ -27,9 +27,9 @@ class ConfBase(object):
 
     def init_mysql_conf(self) -> tuple:
         """
-        Takes the configure of data by connecting mysql database.
+        Takes the configure of data about connecting mysql database.
 
-        :return: sql_cnf, table_name, create_table_sql, insert_table_sql
+        :return sql_cnf, table_name, create_table_sql, insert_table_sql
         """
         # 获取 sql_cnf
         sql_cnf = self.cf.get("mysql", {})
@@ -62,7 +62,7 @@ class ConfBase(object):
         """
         Takes the configure of url.
 
-        :return: url: 网址
+        :return url: 网址
         """
         # 获取 url
         url = self.cf.get("url", {}).get("city_url", "")
@@ -81,7 +81,7 @@ class ConfBase(object):
         """
         Takes the configure of cities.
 
-        :return: cities_list: 城市信息列表
+        :return cities_list: 城市信息列表
         """
         # 获取 cities
         cities = self.cf.get("city", {}).get("cities", "")
@@ -102,7 +102,7 @@ class ConfBase(object):
         """
         Takes the configure of key words.
 
-        :return: key_list: 关键字信息列表
+        :return key_list: 关键字信息列表
         """
         # 获取 key
         key = self.cf.get("key", {}).get("key_list", "")
@@ -118,4 +118,3 @@ class ConfBase(object):
             sys.exit(1)
         # 返回 key_list
         return key_list
-
