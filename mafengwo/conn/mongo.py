@@ -41,4 +41,3 @@ class MongoBase(object):
             self.client.close()
             # 输出 log 信息
             print("Method add_many: exiting the module of add_many ...")
-
