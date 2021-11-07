@@ -36,7 +36,7 @@ class ProxiesBase(object):
         """
         Takes ip data from local file.
 
-        :return: proxies_list: 代理 ip 池
+        :return proxies_list: 代理 ip 池
         """
         # 声明一个空列表
         proxies_list = list()
@@ -70,7 +70,7 @@ class ProxiesBase(object):
         Get max pages from https://www.kuaidaili.com/free/
 
         :param header_list: 请求头列表
-        :return: max_page: 最大翻页
+        :return max_page: 最大翻页
         """
         # 构造请求头
         headers = {
@@ -119,7 +119,7 @@ class ProxiesBase(object):
 
         :param url: 网址
         :param header_list: 请求头列表
-        :return: html: 网页源码
+        :return html: 网页源码
         """
         # 构造请求头
         headers = {
@@ -150,7 +150,7 @@ class ProxiesBase(object):
         Takes proxies by parsing html.
 
         :param html: 网页源码
-        :return: Generator
+        :return Generator: 生成器
         """
         # 捕获异常
         try:
@@ -194,8 +194,8 @@ class ProxiesBase(object):
         """
         Takes all proxies by parsing html of web pages.
 
-        :param header_list:
-        :return:
+        :param header_list: 请求头列表
+        :return all_proxies_list: 所有代理 ip 列表
         """
         # 输出 log 信息
         logging.info("Method all_proxies: loading the module of all_proxies ....")
@@ -236,7 +236,7 @@ class ProxiesBase(object):
         Verify effectiveness of proxies.
 
         :param all_proxies_list: 所有代理 ip 列表
-        :return: verified_proxies_list
+        :return: verified_proxies_list: 有效的代理 ip 池
         """
         # 输出 log 信息
         logging.info("Method verify_proxies: loading the module of verify_proxies ....")
@@ -273,4 +273,3 @@ class ProxiesBase(object):
         logging.info("Method verify_proxies: exiting the module of verify_proxies ....")
         # 返回 verified_proxies_list
         return verified_proxies_list
-
