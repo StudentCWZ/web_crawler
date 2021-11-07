@@ -8,8 +8,9 @@
 # 基本库
 import json
 import logging
-import sys
+import os
 import random
+import sys
 import time
 
 # 第三方库
@@ -40,6 +41,20 @@ class CrawlerBase(object):
         self.mysql_dict = rc.ConfBase().mysql_conn_conf()
         # 声明 table_name, create_table_sql, insert_table_sql
         self.table_name, self.create_table_sql, self.insert_table_sql = rc.ConfBase().mysql_use_conf()
+        # 声明 file_name
+        self.file_name = os.path.split(__file__)[-1]
+
+    def __enter__(self):
+        # 输出 log 信息
+        print("############################### Running {} ################################".format(self.file_name))
+        # 返回 self
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        # 输出 log 信息
+        print("############################### Exiting {} ################################".format(self.file_name))
+        # 返回 False
+        return False
 
     @staticmethod
     def get_page(url: str, proxies_list: list) -> dict:
@@ -48,7 +63,7 @@ class CrawlerBase(object):
 
         :param url: 网页链接
         :param proxies_list: 代理 ip 列表
-        :return: html_dict: 字典
+        :return html_dict: 字典
         """
         # 构造请求头
         headers = {
@@ -91,7 +106,7 @@ class CrawlerBase(object):
 
         :param city_name: 城市名
         :param html_dict: 网页源码
-        :return: Generator
+        :return Generator: 生成器
         """
         # 捕获异常
         try:
@@ -192,8 +207,8 @@ class CrawlerBase(object):
 
 
 if __name__ == '__main__':
-    # 实例化 CrawlerBase 对象
-    cb = CrawlerBase()
-    # 调用 main 函数
-    cb.main()
+    # 上下文管理器
+    with CrawlerBase() as cb:
+        # 调用 main 方法
+        cb.main()
 
