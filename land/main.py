@@ -7,6 +7,7 @@
 
 # 基本库
 import logging
+import os
 import random
 import time
 
@@ -38,6 +39,20 @@ class CrawlerBase(object):
         self.create_table_sql = rc.ConfBase().init_mysql_conf()[2]
         # sql 语句
         self.insert_table_sql = rc.ConfBase().init_mysql_conf()[3]
+        # 声明 file_name
+        self.file_name = os.path.split(__file__)[-1]
+
+    def __enter__(self):
+        # 输出 log 信息
+        print("############################### Running {} ################################".format(self.file_name))
+        # 返回 self
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        # 输出 log 信息
+        print("############################### Exiting {} ################################".format(self.file_name))
+        # 返回 False
+        return False
 
     @staticmethod
     def get_page(url: str) -> str:
@@ -45,7 +60,7 @@ class CrawlerBase(object):
         Takes the html by requesting the web page.
 
         :param url: 网址
-        :return: html: 网页源码
+        :return html: 网页源码
         """
         # 构造请求头
         headers = {
@@ -88,7 +103,7 @@ class CrawlerBase(object):
         Parses the html from web pages.
 
         :param html: 网页源码
-        :return: Generator: 生成器
+        :return Generator: 生成器
         """
         # etree 一个对象
         html = etree.HTML(html)
@@ -140,8 +155,6 @@ class CrawlerBase(object):
     def main(self):
         """The method is entrance of program."""
         # 输出 log 信息
-        print("################################# Running main.py ##################################")
-        # 输出 log 信息
         logging.info("Requesting page and Parsing html ....")
         # for 循环
         for i in range(1, 101):
@@ -190,13 +203,11 @@ class CrawlerBase(object):
             mb.insert_data(self.insert_table_sql, self.result_list)
         # 输出 log 信息
         logging.info("The process of operating database is successful!")
-        # 输出 log 信息
-        print("################################# Exiting main.py ##################################")
 
 
 if __name__ == '__main__':
-    # 实例化 CrawlerBase 对象
-    cb = CrawlerBase()
-    # 调用 main 函数
-    cb.main()
+    # 上下文管理器
+    with CrawlerBase() as cb:
+        # 调用 main 方法
+        cb.main()
 
