@@ -36,7 +36,7 @@ class CrawlerBase(object):
         Takes the html by requesting the web page.
 
         :param url: 网址
-        :return: html: 网页源码
+        :return html: 网页源码
         """
         # 构造请求头
         headers = {
@@ -79,7 +79,7 @@ class CrawlerBase(object):
         Parses the html from web pages.
 
         :param html: 网页源码
-        :return: Generator: 生成器
+        :return Generator: 生成器
         """
         # 获取 li 标签
         result = re.findall(r'(<li class="item.*?>.*?</li>)', html, re.S)
@@ -221,4 +221,3 @@ if __name__ == '__main__':
     cb = CrawlerBase()
     # 调用 main 函数
     cb.main()
-
