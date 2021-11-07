@@ -7,6 +7,7 @@
 
 # 基本库
 import logging
+import os
 import random
 import re
 import sys
@@ -29,6 +30,20 @@ class CrawlerBase(object):
         logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s: %(message)s")
         # 声明 self.initial_url
         self.initial_url = r'https://www.qiushibaike.com/8hr/page/2/'
+        # 声明 file_name
+        self.file_name = os.path.split(__file__)[-1]
+
+    def __enter__(self):
+        # 输出 log 信息
+        print("############################### Running {} ################################".format(self.file_name))
+        # 返回 self
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        # 输出 log 信息
+        print("############################### Exiting {} ################################".format(self.file_name))
+        # 返回 False
+        return False
 
     @staticmethod
     def get_page(url: str) -> str:
@@ -173,8 +188,6 @@ class CrawlerBase(object):
     def main(self):
         """The method is entrance of program."""
         # 输出 log 信息
-        print("################################ Running main.py #################################")
-        # 输出 log 信息
         logging.info("Requesting page and Parsing html ....")
         # 获取原始 url 对应的网页信息
         html = self.get_page(url=self.initial_url)
@@ -212,8 +225,6 @@ class CrawlerBase(object):
                 print(article)
         # 输出 log 信息
         logging.info("The process of Requesting and Parsing is successful!")
-        # 输出 log 信息
-        print("################################ Exiting main.py #################################")
 
 
 if __name__ == '__main__':
