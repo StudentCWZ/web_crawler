@@ -46,12 +46,26 @@ class CrawlerBase(object):
         self.create_table_sql = rc.ConfBase().init_mysql_conf()[2]
         # sql 语句
         self.insert_table_sql = rc.ConfBase().init_mysql_conf()[3]
+        # 声明 file_name
+        self.file_name = os.path.split(__file__)[-1]
+
+    def __enter__(self):
+        # 输出 log 信息
+        print("############################### Running {} ################################".format(self.file_name))
+        # 返回 self
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        # 输出 log 信息
+        print("############################### Exiting {} ################################".format(self.file_name))
+        # 返回 False
+        return False
 
     def get_cities(self) -> dict:
         """
         Takes the list of cities.
 
-        :return: area_dict: 城市数据
+        :return area_dict: 城市数据
         """
         # 随机获取请求头
         city_headers = {"User-Agent": random.choice(uh.HeadersBase().get_headers())}
@@ -95,7 +109,7 @@ class CrawlerBase(object):
 
         :param city_code: 城市对应的数值
         :param keyword: 关键词
-        :return: int(max_page): 最大翻页
+        :return int(max_page): 最大翻页
         """
         # url 拼接
         url = "https://search.51job.com/list/" + str(city_code) + ",000000,0000,00,9,99," + str(keyword) + ",2,1.html"
@@ -144,7 +158,7 @@ class CrawlerBase(object):
         :param city_code: 城市对应的数值
         :param keyword: 关键词
         :param page: 页数
-        :return: html: 网页源码
+        :return html: 网页源码
         """
         # 声明 main_headers
         main_headers = {
@@ -184,7 +198,7 @@ class CrawlerBase(object):
         Parses the html from web pages.
 
         :param html: 网页源码
-        :return: Generator: 生成器
+        :return Generator: 生成器
         """
         # 捕获异常
         try:
@@ -202,9 +216,7 @@ class CrawlerBase(object):
                 yield item
 
     def main(self):
-        """The method is entrance of program."""
-        # 输出 log 信息
-        print("################################# Running main.py ##################################")
+        """The method is entrance of program"""
         # 输出 log 信息
         logging.info("Requesting page and Parsing html ....")
         # 遍历
@@ -269,13 +281,11 @@ class CrawlerBase(object):
             mb.insert_data(self.insert_table_sql, self.result_list)
         # 输出 log 信息
         logging.info("The process of operating database is successful!")
-        # 输出 log 信息
-        print("################################# Running main.py ##################################")
 
 
 if __name__ == '__main__':
-    # 实例化 CrawlerBase 对象
-    cb = CrawlerBase()
-    # 调用 main 函数
-    cb.main()
+    # 上下文管理器
+    with CrawlerBase() as cb:
+        # 调用 main 方法
+        cb.main()
 
