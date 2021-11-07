@@ -7,6 +7,7 @@
 
 # 基本库
 import logging
+import os
 import random
 import re
 import sys
@@ -43,6 +44,20 @@ class CrawlerBase(object):
         self.travel_notes_info = list()
         # 声明 self.result_list
         self.result_list = list()
+        # 声明 file_name
+        self.file_name = os.path.split(__file__)[-1]
+
+    def __enter__(self):
+        # 输出 log 信息
+        print("############################### Running {} ################################".format(self.file_name))
+        # 返回 self
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        # 输出 log 信息
+        print("############################### Exiting {} ################################".format(self.file_name))
+        # 返回 False
+        return False
 
     @staticmethod
     def get_page(url: str, proxies_list: list) -> str:
@@ -51,7 +66,7 @@ class CrawlerBase(object):
 
         :param url: 网址
         :param proxies_list: 代理 ip 列表
-        :return: html: 网页源码
+        :return html: 网页源码
         """
         # 构造请求头
         headers = {
@@ -83,7 +98,7 @@ class CrawlerBase(object):
         Takes cities list from the web page.
 
         :param html: 网页源码
-        :return: cities_list: 城市列表
+        :return cities_list: 城市列表
         """
         # 声明 cities_list
         cities_list = list()
@@ -112,7 +127,7 @@ class CrawlerBase(object):
 
         :param html: 网页源码
         :param city_id: 城市对应 id
-        :return: Generator: 生成器
+        :return Generator: 生成器
         """
         # 获取 div 标签
         div_html_list = re.findall(r'<div class="navbar-con">(.*?)<div class="overview-drop hide" data-cs-p="概况菜单">',
@@ -166,7 +181,7 @@ class CrawlerBase(object):
         Parse html from the web page about viewpoint.
 
         :param html: 网页源码
-        :return: Generator: 生成器
+        :return Generator: 生成器
         """
         # 获取 div 标签
         div_html_list = re.findall(r'<div class="middle">(.*?</p>)', html, re.S)
@@ -201,7 +216,7 @@ class CrawlerBase(object):
         :param html: 网页源码
         :param url: 网页链接
         :param proxies_list: 代理 ip 列表
-        :return: Generator: 生成器
+        :return Generator: 生成器
         """
         # 获取 max_page_list
         max_page_list = re.findall(r'<span class="count">.*?<span>(.*?)</span>', html, re.S)
@@ -263,7 +278,7 @@ class CrawlerBase(object):
         :param html: 网页源码
         :param url: 网页链接
         :param proxies_list: 代理 ip 列表
-        :return: Generator: 生成器
+        :return Generator: 生成器
         """
         # 获取 max_page_list
         max_page_list = re.findall(r'<span class="count">.*?<span>(.*?)</span>', html, re.S)
@@ -325,7 +340,7 @@ class CrawlerBase(object):
         :param html: 网页源码
         :param url: 网页链接
         :param proxies_list: 代理 ip 列表
-        :return: Generator: 生成器
+        :return Generator: 生成器
         """
         # 获取 max_page_list
         max_page_list = re.findall(r'<span class="count">.*?<span>(.*?)</span>', html, re.S)
@@ -403,8 +418,6 @@ class CrawlerBase(object):
 
     def main(self):
         """The method is entrance of program"""
-        # 输出 log 信息
-        print("############################### Running main.py ################################")
         # 输出 log 信息
         logging.info("Getting proxies ...")
         # 所有代理 ip 列表
@@ -580,8 +593,6 @@ class CrawlerBase(object):
             logging.info("The process of inserting data is failed!")
         # 输出 log 信息
         logging.info("The process of operating database is successful!")
-        # 输出 log 信息
-        print("############################### Exiting main.py ################################")
 
 
 if __name__ == "__main__":
