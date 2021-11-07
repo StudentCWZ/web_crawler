@@ -7,6 +7,7 @@
 
 # 基本库
 import logging
+import os
 import random
 import re
 import sys
@@ -42,6 +43,20 @@ class CrawlerBase(object):
         self.create_table_sql = rc.ConfBase().mysql_use_conf()[1]
         # sql 语句
         self.insert_table_sql = rc.ConfBase().mysql_use_conf()[2]
+        # 声明 file_name
+        self.file_name = os.path.split(__file__)[-1]
+
+    def __enter__(self):
+        # 输出 log 信息
+        print("############################### Running {} ################################".format(self.file_name))
+        # 返回 self
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        # 输出 log 信息
+        print("############################### Exiting {} ################################".format(self.file_name))
+        # 返回 False
+        return False
 
     @staticmethod
     def get_page(url: str, proxies_list: list) -> str:
@@ -77,8 +92,8 @@ class CrawlerBase(object):
             if response.status_code == 200:
                 # 获取网页源码
                 html = response.text
-                # 随机休眠 1~5s
-                time.sleep(random.randint(1, 5))
+                # 随机休眠 20~25s
+                time.sleep(random.randint(20, 25))
                 # 返回 html
                 return html
         except Exception as e:
@@ -91,7 +106,7 @@ class CrawlerBase(object):
         Parse html from the web page: https://music.163.com/discover/artist.
 
         :param html: 网页源码
-        :return: classification_list: 歌手分类列表
+        :return classification_list: 歌手分类列表
         """
         # 新建列表，接收解析信息
         classification_list = list()
@@ -127,7 +142,7 @@ class CrawlerBase(object):
         Parse html from the web page about singer.
 
         :param html: 网页源码
-        :return: Generator: 生成器
+        :return Generator: 生成器
         """
         # 获取 div 标签列表
         div_html_list = re.findall(r'<div class="u-cover u-cover-5">(.*?)</div>', html, re.S)
@@ -184,7 +199,7 @@ class CrawlerBase(object):
         Parse html from the web page about songs.
 
         :param html: 网页源码
-        :return: Generator: 生成器
+        :return Generator: 生成器
         """
         # div 标签列表
         hot_song_html_list = re.findall(r'<div id="hotsong-list">.*?<ul class="f-hide">(.*?)</ul>', html, re.S)
@@ -221,8 +236,6 @@ class CrawlerBase(object):
 
     def main(self):
         """The method is entrance of program"""
-        # 输出 log 信息
-        print("################################ Running main.py ##################################")
         # 输出 log 信息
         logging.info("Requesting page and Parsing html ....")
         # 所有代理 ip 列表
@@ -354,13 +367,10 @@ class CrawlerBase(object):
             logging.info("The process of inserting data is failed!")
         # 输出 log 信息
         logging.info("The process of operating database is successful!")
-        # 输出 log 信息
-        print("################################ Exiting main.py ##################################")
 
 
-if __name__ == "__main__":
-    # 实例化 CrawlerBase 对象
-    cb = CrawlerBase()
-    # 调用 main 函数
-    cb.main()
-
+if __name__ == '__main__':
+    # 上下文管理器
+    with CrawlerBase() as cb:
+        # 调用 main 方法
+        cb.main()
