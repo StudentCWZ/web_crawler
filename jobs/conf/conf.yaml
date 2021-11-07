@@ -1,6 +1,6 @@
 mysql:
-  host: localhost
-  port: 3306
+  host: xxxx
+  port: xxxx
   user: xxxx
   passwd: xxxx
   db: xxxx
