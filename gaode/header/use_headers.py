@@ -22,9 +22,9 @@ class HeadersBase(object):
 
     def get_headers(self) -> list:
         """
-        Takes headers message.
+        Takes headers information.
 
-        :return: header_list：请求头列表
+        :return header_list：请求头列表
         """
         # 打开文件
         with open(self.file_path, "r", encoding="utf-8") as f:
@@ -39,4 +39,3 @@ class HeadersBase(object):
         else:
             # 输出 log 信息
             print("Method get_headers: the error of getting headers message!")
-
