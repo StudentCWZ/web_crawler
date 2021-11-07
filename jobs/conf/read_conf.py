@@ -43,11 +43,11 @@ class ConfBase(object):
             sys.exit(1)
         # 获取 sql_dict
         sql_dict = {
-            "host": sql_cnf.get("host"),
-            "port": sql_cnf.get("port"),
-            "user": sql_cnf.get("user"),
-            "passwd": sql_cnf.get("passwd"),
-            "db": sql_cnf.get("db")
+            "host": sql_cnf.get("host", ""),
+            "port": sql_cnf.get("port", ""),
+            "user": sql_cnf.get("user", ""),
+            "passwd": sql_cnf.get("passwd", ""),
+            "db": sql_cnf.get("db", "")
         }
         # 获取 table_name
         table_name = sql_cnf.get("table_name")
