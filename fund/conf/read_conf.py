@@ -27,9 +27,9 @@ class ConfBase(object):
 
     def init_mysql_conf(self) -> tuple:
         """
-        Takes the configure of data by connecting mysql database.
+        Takes the configure of data about connecting mysql database.
 
-        :return: sql_dict, table_name, create_table_sql, insert_table_sql
+        :return sql_dict, table_name, create_table_sql, insert_table_sql
         """
         # 获取 sql_cnf
         sql_cnf = self.cf.get("mysql", {})
@@ -62,7 +62,7 @@ class ConfBase(object):
         """
         Takes the configure of url.
 
-        :return: url: 网址
+        :return url: 网址
         """
         # 获取 url
         url = self.cf.get("url", {}).get("initial_url", "")
@@ -76,4 +76,3 @@ class ConfBase(object):
             sys.exit(1)
         # 返回 url
         return url
-
