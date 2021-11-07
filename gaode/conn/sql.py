@@ -29,7 +29,7 @@ class MysqlBase(object):
         """
         Connect mysql database.
 
-        :return: conn
+        :return: conn: 一个 conn 对象
         """
         # 捕获异常
         try:
@@ -102,7 +102,7 @@ class MysqlBase(object):
         Create a new data sheet in database.
 
         :param table_name: 数据库表
-        :param sql: sql 语句
+        :param sql: 创建数据表的 sql 语句
         """
         # 获取 conn 对象
         conn = self._conn_sql()
@@ -130,8 +130,8 @@ class MysqlBase(object):
         """
         Insert data in data sheet.
 
-        :param sql:
-        :param result_list:
+        :param sql: 插入数据的 sql 语句
+        :param result_list: 插入 mysql 的数据列表
         """
         # 获取 conn 对象
         conn = self._conn_sql()
@@ -156,4 +156,3 @@ class MysqlBase(object):
         finally:
             # 关闭连接
             conn.close()
-
