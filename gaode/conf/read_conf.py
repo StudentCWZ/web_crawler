@@ -29,7 +29,7 @@ class ConfBase(object):
         """
         Takes the configure of data by connecting mysql database.
 
-        :return: mysql_conf
+        :return mysql_conf: 连接 mysql 数据库的信息
         """
         # 获取 mysql_conf
         mysql_conf = self.cf.get("mysql", {})
@@ -59,7 +59,7 @@ class ConfBase(object):
         """
         Takes the configure of data by using mysql database.
 
-        :return: table_name, create_table_sql, insert_table_sql
+        :return table_name, create_table_sql, insert_table_sql
         """
         # 获取 mysql_conf
         mysql_conf = self.cf.get("mysql", {})
@@ -83,7 +83,7 @@ class ConfBase(object):
         """
         Takes the configure of url.
 
-        :return: url: 网址
+        :return url: 网址
         """
         # 获取 mysql_conf
         url = self.cf.get("url", {}).get("initial_url", "")
@@ -95,4 +95,3 @@ class ConfBase(object):
             sys.exit(1)
         # 返回 url
         return url
-
