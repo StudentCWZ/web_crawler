@@ -29,7 +29,7 @@ class MysqlBase(object):
         """
         Connect mysql database.
 
-        :return: conn: dbutils.steady_db.SteadyDBConnection
+        :return conn: conn 对象
         """
         # 捕获异常
         try:
@@ -51,7 +51,7 @@ class MysqlBase(object):
         Judge the existence of data sheet.
 
         :param table_name
-        :return: True/False
+        :return True/False
         """
         # 获取 conn 对象
         conn = self._conn_sql()
@@ -156,4 +156,3 @@ class MysqlBase(object):
         finally:
             # 关闭连接
             conn.close()
-
