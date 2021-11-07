@@ -25,7 +25,7 @@ class HeadersBase(object):
         """
         Takes headers message.
 
-        :return: header_list: 请求头列表
+        :return header_list: 请求头列表
         """
         # 打开文件
         with open(self.file_path, "r", encoding="utf-8") as f:
@@ -44,4 +44,3 @@ class HeadersBase(object):
             print("Method get_headers: exiting the program ...")
             # 退出程序
             sys.exit(1)
-
