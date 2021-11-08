@@ -1,0 +1,12 @@
+mysql:
+  host: xxxx
+  port: xxxx
+  user: xxxx
+  passwd: xxxx
+  db: xxxx
+  table_name: xxxx
+  create_table_sql: CREATE TABLE {} (`id` int auto_increment primary key, `house_name` varchar(50) DEFAULT NULL, `house_type` varchar(50) DEFAULT NULL, `house_status` varchar(50) DEFAULT NULL, `house_city` varchar(50) DEFAULT NULL, `house_location` varchar(255) DEFAULT NULL, `house_address` varchar(255) DEFAULT NULL, `house_room` varchar(50) DEFAULT NULL, `house_area` varchar(50) DEFAULT NULL, `house_tags` varchar(255) DEFAULT NULL, `house_price` varchar(50) DEFAULT NULL) CHARSET=utf8mb4;
+  insert_table_sql: INSERT INTO {} (house_name, house_type, house_status, house_city, house_location, house_address, house_room, house_area, house_tags, house_price) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+
+url:
+  initial_url: https://bj.fang.lianjia.com/loupan/pg1/
