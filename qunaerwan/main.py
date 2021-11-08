@@ -35,6 +35,10 @@ class CrawlerBase(object):
         logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s: %(message)s")
         # 声明 initial_url
         self.initial_url = "http://www.mafengwo.cn/mdd/"
+        # 所有代理 ip 列表
+        self.all_proxies_list = pp.ProxiesBase().all_proxies(uh.HeadersBase().get_headers())
+        # 有效代理 ip 列表
+        self.proxies_list = pp.ProxiesBase().verify_proxies(self.all_proxies_list)
         # 定义 self.mdd_list，保存目的地链接、目的地 ID 和目的地名称
         self.mdd_list = list()
         # 定义 self.result_list
@@ -62,8 +66,7 @@ class CrawlerBase(object):
         # 返回 False
         return False
 
-    @staticmethod
-    def get_mdd(url: str) -> Generator:
+    def get_mdd(self, url: str) -> Generator:
         """
         Takes the information of cities from web pages.
 
@@ -76,10 +79,14 @@ class CrawlerBase(object):
             "Upgrade-Insecure-Requests": "1",
             "User-Agent": random.choice(uh.HeadersBase().get_headers())
         }
+        # 随机选取代理 IP
+        proxies = random.choice(self.proxies_list)
         # 初始化请求对象
         req = requests.session()
         # 设置通用 Headers
         req.headers.update(headers)
+        # 设置代理 Ip
+        req.proxies = proxies
         # 获取网页源代码
         response = req.get(url)
         # 条件判断
@@ -137,8 +144,7 @@ class CrawlerBase(object):
             else:
                 pass
 
-    @staticmethod
-    def get_page(url: str) -> str:
+    def get_page(self, url: str) -> str:
         """
         Takes html from web pages.
 
@@ -156,10 +162,12 @@ class CrawlerBase(object):
             'User-Agent': random.choice(uh.HeadersBase().get_headers()),
             'X-Requested-With': 'XMLHttpRequest'
         }
+        # 随机选取代理 IP
+        proxies = random.choice(self.proxies_list)
         # 捕获异常
         try:
             # 发起 get 请求
-            response = requests.get(url=url, headers=headers, timeout=300)
+            response = requests.get(url=url, headers=headers, proxies=proxies, timeout=300)
             # 条件判断
             if response.status_code == 200:
                 # 获取网页源码
