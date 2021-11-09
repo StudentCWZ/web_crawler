@@ -131,7 +131,7 @@ class ProxiesBase(object):
                 # 获取网页信息
                 html = response.text
                 # 休眠
-                time.sleep(random.randint(3, 5))
+                time.sleep(random.randint(20, 30))
             else:
                 # 声明 html
                 html = ""
@@ -199,7 +199,7 @@ class ProxiesBase(object):
         # 声明 all_proxies_list，用于接收元素
         all_proxies_list = list()
         # for 循环
-        for page in range(1, 31):
+        for page in range(1, 51):
             # 拼接 url
             url = self.initial_url + "inha/" + str(page) + "/"
             # 输出 log 日志
@@ -221,7 +221,7 @@ class ProxiesBase(object):
             pass
         else:
             # 赋值
-            all_proxies_list = self.read_txt()[0:30]
+            all_proxies_list = self.read_txt()[0:50]
         # 输出 log 信息
         print("Method all_proxies: exiting the module of all_proxies ....")
         # 返回 all_proxies_list
