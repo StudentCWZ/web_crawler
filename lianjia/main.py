@@ -94,8 +94,8 @@ class CrawlerBase(object):
             if response.status_code == 200:
                 # 获取网页源码
                 html = response.text
-                # 随机休眠 1~5s
-                time.sleep(random.randint(1, 5))
+                # 随机休眠 40~50s
+                time.sleep(random.randint(40, 50))
                 # 返回 html
                 return html
         except Exception as e:
@@ -403,16 +403,18 @@ class CrawlerBase(object):
         html = self.get_page(url)
         # 随机休眠 10~20s
         time.sleep(random.randint(10, 20))
-        # 遍历
-        for item in self.parse_page(html):
-            # 条件判断
-            if not item:
-                # 跳入下一次循环
-                continue
-            # 添加元素
-            lst.append(item)
-        # 返回 lst
-        return lst
+        # 条件判断
+        if html:
+            # 遍历
+            for item in self.parse_page(html):
+                # 条件判断
+                if not item:
+                    # 跳入下一次循环
+                    continue
+                # 添加元素
+                lst.append(item)
+            # 返回 lst
+            return lst
 
     def main(self):
         """The method is entrance of program"""
