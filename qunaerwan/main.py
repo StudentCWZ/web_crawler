@@ -288,7 +288,7 @@ class CrawlerBase(object):
                             # 获取 sight_slogen
                             sight_slogen = ""
                         else:
-                            sight_slogen = sight_slogen_list[0]
+                            sight_slogen = sight_slogen_list[0].replace("\n", " ")
                         # 获取 sight_price_list
                         sight_price_list = inf.xpath('.//span[@class="sight_item_price"]/em/text()')
                         # 条件判断
